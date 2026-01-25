@@ -10,22 +10,18 @@ import { cleanResponse } from '../lib/CleanText';
 import template from '../prompts/chatbots.txt';
 import path from 'path';
 const openRouter = new OpenRouter({
-   apiKey: process.env.OPENROUTER_API_KEY2,
+   apiKey: process.env.OPENROUTER_API_KEY1,
 });
 type ChatMessage = {
    role: 'system' | 'user' | 'assistant';
    content: string;
 };
-const parkInfo = fs.readFileSync(
-   path.join(__dirname, '..', 'prompts', 'WonderWorld.md'),
-   'utf-8'
-);
-const instructions = template.replace('{{parkInfo}}', parkInfo);
+
 export const chatService = {
    async sendMessage(converSationId: string, prompt: string) {
       conversationRepository.setCoversations(converSationId);
       let res = await openRouter.chat.send({
-         model: 'allenai/molmo-2-8b:free',
+         model: 'liquid/lfm-2.5-1.2b-instruct:free',
 
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
@@ -40,7 +36,7 @@ export const chatService = {
          content: prompt,
       });
       res = await openRouter.chat.send({
-         model: 'allenai/molmo-2-8b:free',
+         model: 'liquid/lfm-2.5-1.2b-instruct:free',
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
       });
