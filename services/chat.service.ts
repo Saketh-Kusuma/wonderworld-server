@@ -10,7 +10,7 @@ import { cleanResponse } from '../lib/CleanText';
 import template from '../prompts/chatbots.txt';
 import path from 'path';
 const openRouter = new OpenRouter({
-   apiKey: process.env.OPENROUTER_API_KEY1,
+   apiKey: process.env.OPENROUTER_API_KEY3,
 });
 type ChatMessage = {
    role: 'system' | 'user' | 'assistant';
