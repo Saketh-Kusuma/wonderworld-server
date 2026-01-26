@@ -21,7 +21,7 @@ export const chatService = {
    async sendMessage(converSationId: string, prompt: string) {
       conversationRepository.setCoversations(converSationId);
       let res = await openRouter.chat.send({
-         model: 'nvidia/nemotron-nano-12b-v2-vl:free',
+         model: 'arcee-ai/trinity-mini:free',
 
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
@@ -36,7 +36,7 @@ export const chatService = {
          content: prompt,
       });
       res = await openRouter.chat.send({
-         model: 'nvidia/nemotron-nano-12b-v2-vl:free',
+         model: 'arcee-ai/trinity-mini:free',
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
       });
