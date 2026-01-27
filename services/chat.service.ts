@@ -21,7 +21,7 @@ export const chatService = {
    async sendMessage(converSationId: string, prompt: string) {
       conversationRepository.setCoversations(converSationId);
       let res = await openRouter.chat.send({
-         model: 'arcee-ai/trinity-mini:free',
+         model: 'allenai/molmo-2-8b:free',
 
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
@@ -36,7 +36,7 @@ export const chatService = {
          content: prompt,
       });
       res = await openRouter.chat.send({
-         model: 'arcee-ai/trinity-mini:free',
+         model: 'allenai/molmo-2-8b:free',
          messages: conversationRepository.getCoversations(converSationId) || [],
          stream: false,
       });
