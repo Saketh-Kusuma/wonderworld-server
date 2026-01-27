@@ -3,13 +3,16 @@ import path from 'path';
 import template from '../prompts/chatbots.txt';
 import type { Message } from '@openrouter/sdk/models';
 const parkInfo = fs.readFileSync(
-   path.join(__dirname, '..', 'prompts', 'WonderWorld.md'),
-   'utf-8'
+  path.join(__dirname, "..", "prompts", "WonderWorld.md"),
+  "utf-8"
 );
-const date = new Date().getDate();
-const instructions =
-   template.replace('{{parkInfo}}', parkInfo) +
-   template.replace('{{date}}', date.toLocaleString());
+
+const currentDate = new Date().toLocaleString();
+
+const instructions = template
+  .replace("{{parkInfo}}", parkInfo)
+  .replace("{{date}}", currentDate);
+
 export let messages: Message[] = [
    { role: 'system', content: instructions },
    { role: 'user', content: 'Hello!' },
